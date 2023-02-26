@@ -79,23 +79,23 @@ const SignUpForm = () => {
                     required
                     onChange={handleChange}
                     name="email"
-                    value={displayName}
+                    value={email}
                 />
                 <FormInput
                     label="Password"
-                    type="text"
+                    type="password"
                     required
                     onChange={handleChange}
                     name="password"
-                    value={displayName}
+                    value={password}
                 />
                 <FormInput
                     label="Confirm Password"
-                    type="text"
+                    type="password"
                     required
                     onChange={handleChange}
                     name="confirmPassword"
-                    value={displayName}
+                    value={confirmPassword}
                 />
 
 
