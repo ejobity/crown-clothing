@@ -8,7 +8,7 @@ import {
     signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
 
-import Button from "../buton/button.component";
+import Button from "../button/button.component";
 
 import './sign-in-form.styles.scss';
 
