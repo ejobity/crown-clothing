@@ -34,7 +34,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+/* eslint-disable no-unused-vars */
 const firebaseApp = initializeApp(firebaseConfig);
+/* eslint-disable no-unused-vars */
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -80,11 +82,11 @@ export const createUserDocumentFromAuth = async(userAuth, additionalInformation 
 
 
     const userDocRef = doc(db, 'users', userAuth.uid);
-    console.log(userDocRef);
+   // console.log(userDocRef);
 
     const userSnapshot = await getDoc(userDocRef);
-    console.log(userSnapshot);
-    console.log(userSnapshot.exists());
+   // console.log(userSnapshot);
+   // console.log(userSnapshot.exists());
 
     if(!userSnapshot.exists()){
         const { displayName, email} = userAuth;
