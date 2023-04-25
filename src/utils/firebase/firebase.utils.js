@@ -20,9 +20,6 @@ import {
   getDocs,
 } from 'firebase/firestore';
 
-
-
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBt-2rheMi4qWZqoHM7v1YgzIVNygMFGrw",
   authDomain: "crwn-clothing-db-58656.firebaseapp.com",
@@ -32,10 +29,7 @@ const firebaseConfig = {
   appId: "1:51919047285:web:ee8b25c6d51c039fe6063c"
 };
 
-// Initialize Firebase
-/* eslint-disable no-unused-vars */
 const firebaseApp = initializeApp(firebaseConfig);
-/* eslint-disable no-unused-vars */
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -73,7 +67,7 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map((doc) => doc.data());
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocumentFromAuth = async (
@@ -102,7 +96,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -119,4 +113,18 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signOutUser = async () => await signOut(auth);
 
-export const onAuthStateChangedLister = (callback) => onAuthStateChanged(auth, callback);
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
